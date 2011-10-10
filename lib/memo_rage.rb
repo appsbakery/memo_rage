@@ -2,6 +2,7 @@ require "memo_rage/version"
 require 'httpclient'
 require 'nokogiri'
 require 'hashie/mash'
+require 'vendor/xml_to_hash'
 
 module MemoRage
   ROOT_URL = "services.tvrage.com"
