@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = MemoRage::VERSION
   s.authors     = ["Todor Grudev"]
   s.email       = ["tagrudev@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.homepage    = "http://github.com/appsbakery/memo_rage"
+  s.summary     = %q{API Wrapper for TVRage}
+  s.description = %q{API Wrapper for TVRage}
 
   s.rubyforge_project = "memo_rage"
 
@@ -17,4 +17,11 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
+
+  s.add_runtime_dependency "nokogiri", "~> 1.5.0"
+  s.add_runtime_dependency "httpclient", ">= 2.2.0.2"
+  s.add_development_dependency "rake", ">= 0.8.7"
+  s.add_development_dependency "rspec", ">= 2"
+  s.add_development_dependency "webmock", ">= 1.6.2"
+  s.add_development_dependency "timecop", ">= 0.3.5"
 end
