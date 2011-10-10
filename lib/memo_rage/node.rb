@@ -35,10 +35,10 @@ module MemoRage
       when 'null'
         nil
       else
-        #parsed_response = MultiJson.decode(response.body)
-        #parsed_response = Hashie::Mash.new(parsed_response)
-        # handle_httpclient_error(parsed_response) if parsed_response[:error]
-        #parsed_response
+        parsed_response = Nokogiri::XML::Reader(response.body)
+        parsed_response = Hashie::Mash.new(parsed_response)
+        handle_httpclient_error(parsed_response) if parsed_response[:error]
+        parsed_response
       end
     end
     
