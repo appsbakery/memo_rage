@@ -3,11 +3,9 @@ require 'spec_helper'
 describe MemoRage::TvShow, '.find' do
   context 'with valid tconst given' do
     it 'should get main details' do
-      mock_api :get, 'title/maindetails', 'title/maindetails-buffy', :params => { :tconst => 'buffy', :title => 'Buffy', :year => '2011' } do
+      stub_request(:get, "http://services.tvrage.com/title/maindetails?apiKey=Ld3oukUu409XzrQVjhS3&locale=en_US&timestamp=1318417525&title=Buffy") do
         movie = MemoRage::TvShow.find('buffy')
-        movie.tconst.should == "buffy"
         movie.title.should == "Buffy"
-        movie.year.should == "2011"
       end
     end
   end

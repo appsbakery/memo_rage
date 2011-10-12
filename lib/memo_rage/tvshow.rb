@@ -1,12 +1,10 @@
 module MemoRage
   class TvShow < Node
-    attr_accessor :tconst, :title, :year
+    attr_accessor :title
     
     def initialize(identifier, attributes = {})
       super
-      @tconst = attributes[:tconst]
       @title  = attributes[:title]
-      @year   = attributes[:year]
     end
     
     def self.find(tconst)
