@@ -7,8 +7,8 @@ module MemoRage
       @title  = attributes[:title]
     end
     
-    def self.find(tconst)
-      new('title/maindetails').fetch({:tconst => tconst})
+    def self.find(title)
+      new('title/maindetails').fetch({:title => title})
     end
   end
 end
