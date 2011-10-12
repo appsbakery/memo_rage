@@ -1,17 +1,14 @@
 require "memo_rage/version"
 require 'httpclient'
-require 'nokogiri'
 require 'hashie/mash'
 require 'vendor/xml_to_hash'
+require 'vendor/to_params'
 
 module MemoRage
   ROOT_URL = "http://services.tvrage.com/myfeeds/"
   DEFAULT_PARAMS = {
-    :type    => nil,
     :apiKey  => "Ld3oukUu409XzrQVjhS3",
-    :title   => nil,
-    :sid     => nil,
-    :ep      => nil
+    :type    => nil
   }
 
   class Exception < StandardError
@@ -34,5 +31,4 @@ module MemoRage
   end
 end
 
-require "memo_rage/node"
 require "memo_rage/tvshow"
