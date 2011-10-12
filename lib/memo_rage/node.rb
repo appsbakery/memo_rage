@@ -21,8 +21,8 @@ module MemoRage
     end
     
     private
-    def build_params(params = {})
-      DEFAULT_PARAMS.merge(:timestamp => Time.now.to_i.to_s).merge(params)
+    def build_params(type, title, sid, ep)
+      DEFAULT_PARAMS.merge(:type => type + ".php?key=".to_s).merge(:apiKey).merge(:title => "&show=" + title.to_s).merge(:show_id => "&sid=" + show_id.to_s).merge(:ep => "&ep=" + ep.to_s)
     end
     
     def handle_response
@@ -45,12 +45,8 @@ module MemoRage
     
     def handle_httpclient_error(response)
       case response[:error][:status]
-      when 401, 403
-        raise Unauthorized.new(response[:error][:message])
       when 404
         raise NotFound.new(response[:error][:message])
-      else
-        raise BadRequest.new(response[:error][:message])
       end
     end
   end

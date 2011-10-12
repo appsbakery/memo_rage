@@ -5,11 +5,13 @@ require 'hashie/mash'
 require 'vendor/xml_to_hash'
 
 module MemoRage
-  ROOT_URL = "services.tvrage.com"
+  ROOT_URL = "http://services.tvrage.com/myfeeds/"
   DEFAULT_PARAMS = {
-    :apiKey => "Ld3oukUu409XzrQVjhS3",
-    :locale => "en_US",
-    :timestamp => nil
+    :type    => nil,
+    :apiKey  => "Ld3oukUu409XzrQVjhS3",
+    :title   => nil,
+    :sid     => nil,
+    :ep      => nil
   }
 
   class Exception < StandardError
@@ -20,7 +22,6 @@ module MemoRage
         @message = message
       else
         @message = 'Not Found'
-        @code = response[:error][:code]
         @type = response[:@type]
       end
     end
