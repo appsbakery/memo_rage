@@ -39,7 +39,17 @@ module MemoRage
       else
         parsed_response = Hash.from_xml(response.body)
         parsed_response = Hashie::Mash.new(parsed_response)
+        handle_httpclient_error(parsed_response) if parsed_response.empty?
         parsed_response
+      end
+    end
+    
+    def handle_httpclient_error(response)
+      case response
+      when response.empty?
+        raise NotFound.new(response[:error][:message])
+      else
+        raise BadRequest.new(response[:error][:message])
       end
     end
   end
