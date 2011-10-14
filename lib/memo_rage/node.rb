@@ -47,9 +47,7 @@ module MemoRage
     def handle_httpclient_error(response)
       case response
       when response.empty?
-        raise NotFound.new(response[:error][:message])
-      else
-        raise BadRequest.new(response[:error][:message])
+        raise NotFound.new()
       end
     end
   end
