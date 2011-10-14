@@ -6,10 +6,7 @@ require 'vendor/to_params'
 
 module MemoRage
   ROOT_URL = "http://services.tvrage.com/myfeeds/"
-  DEFAULT_PARAMS = {
-    :apiKey  => "Ld3oukUu409XzrQVjhS3",
-    :type    => nil
-  }
+  API_KEY  = "?key=Ld3oukUu409XzrQVjhS3"
 
   class Exception < StandardError
     attr_accessor :code, :type, :message
@@ -30,5 +27,5 @@ module MemoRage
     end
   end
 end
-
+require "memo_rage/node"
 require "memo_rage/tvshow"
