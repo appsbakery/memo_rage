@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <Results>
   <show>
     <showid>2930</showid>
@@ -9,14 +10,7 @@
     <seasons>7</seasons>
     <status>Canceled/Ended</status>
     <classification>Scripted</classification>
-    <genres>
-      <genre>Action</genre>
-      <genre>Adventure</genre>
-      <genre>Comedy</genre>
-      <genre>Drama</genre>
-      <genre>Mystery</genre>
-      <genre>Sci-Fi</genre>
-    </genres>
+    <genres><genre>Action</genre><genre>Adventure</genre><genre>Comedy</genre><genre>Drama</genre><genre>Mystery</genre><genre>Sci-Fi</genre></genres>
   </show>
   <show>
     <showid>2931</showid>
@@ -28,12 +22,6 @@
     <seasons>1</seasons>
     <status>Pilot Rejected</status>
     <classification>Animation</classification>
-    <genres>
-      <genre>Animation General</genre>
-      <genre>Action</genre>
-      <genre>Adventure</genre>
-      <genre>Horror/Supernatural</genre>
-    </genres>
+    <genres><genre>Animation General</genre><genre>Action</genre><genre>Adventure</genre><genre>Horror/Supernatural</genre></genres>
   </show>
 </Results>
-

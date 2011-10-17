@@ -6,7 +6,7 @@ module WebMockHelper
   #
   # @param [Symbol] method http method
   # @param [String] path endpoint path
-  # @param [String] response_file xml response file name/path
+  # @param [String] response_file json response file name/path
   # @param [Hash] options optional options params
   def mock_api(method, path, response_file, options = {})
     stub_request(method, endpoint_for(path)).with(
@@ -18,11 +18,11 @@ module WebMockHelper
     yield
   end
   
-  # Load xml response file and return its content
+  # Load json response file and return its content
   #
-  # @param [String] response_file xml response file name/path
+  # @param [String] response_file json response file name/path
   # @return [String]
-  def load_xml(response_file)
+  def load_json(response_file)
     File.new(File.join(File.dirname(__FILE__), '../mock_xml', "#{response_file}.xml"))
   end
 
@@ -30,11 +30,10 @@ module WebMockHelper
   
   # Get final url for specific endpoint
   #
-  # @param [String] path is the endpoint path ex: `title/maindetails`
+  # @param [String] path is the endpoint path ex: `showinfo`
   # @return [String] the formatted endpoint, if anonymize is enabled prefixed with anonymous
   def endpoint_for(path)
-    parts = [MemoRage::ROOT_URL, path]
-    File.join(parts)
+    File.join(MemoRage::ROOT_URL, "#{path}.php")
   end
   
   # Prepare request params for HTTPClient
@@ -45,12 +44,11 @@ module WebMockHelper
   def request_for(method, options = {})
     request = {}
     if options[:params]
-      params = MemoRage::DEFAULT_PARAMS.merge(:timestamp => Time.now.to_i.to_s).merge(options[:params])
       case method
       when :post, :put
-        request[:body] = params
+        request[:body] = options[:params]
       else
-        request[:query] = params
+        request[:query] = options[:params]
       end
     end
     request
@@ -58,12 +56,12 @@ module WebMockHelper
   
   # Build response hash for HTTPClient
   #
-  # @param [String] response_file xml response file name/path
+  # @param [String] response_file json response file name/path
   # @param [Hash] options like status, etc
   # @return [Hash] formatted http response hash
   def response_for(response_file, options = {})
     response = {}
-    response[:body] = load_xml(response_file)
+    response[:body] = load_json(response_file)
     if options[:status]
       response[:status] = options[:status]
     end
