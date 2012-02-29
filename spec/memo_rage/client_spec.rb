@@ -14,6 +14,7 @@ describe MemoRage::Client do
   describe '#build_endpoint' do
     it 'should merge path with root url' do
       client.send(:build_endpoint, 'search').should == "http://services.tvrage.com/myfeeds/search.php"
+      client.send(:build_endpoint, 'showinfo').should == "http://services.tvrage.com/myfeeds/showinfo.php"
     end
   end
 end

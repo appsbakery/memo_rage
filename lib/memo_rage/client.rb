@@ -12,6 +12,12 @@ module MemoRage
       parser.parse
     end
     
+    def show_info(id)
+      content = get("showinfo", { :sid => id })
+      parser = MemoRage::Parser::ShowInfo.new content
+      parser.parse
+    end
+
     private
     def get(path, params = {})
       HTTPClient.get build_endpoint(path), build_params(params)
