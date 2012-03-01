@@ -18,7 +18,7 @@ module MemoRage
           season.elements.each("episode") do |episode|
             if episode.elements["screencap"] == nil
                 missing = episode.add_element "screencap"
-                missing.add_text "no-image"
+                missing.add_text ""
             end
             episodes << MemoRage::Episode.new(
               :num => episode.elements["epnum"].text,
