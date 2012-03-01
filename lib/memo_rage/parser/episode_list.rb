@@ -21,15 +21,15 @@ module MemoRage
                 missing.add_text "no-image"
             end
             episodes << MemoRage::Episode.new(
-              :epnum => episode.elements["epnum"].text,
+              :num => episode.elements["epnum"].text,
               :season => season_number,
-              :seasonnum => episode.elements["seasonnum"].text,
-              :prodnum => episode.elements["prodnum"].text,
+              :season_num => episode.elements["seasonnum"].text,
+              :prod_num => episode.elements["prodnum"].text,
               :airdate => episode.elements["airdate"].text,
               :link => episode.elements["link"].text,
               :title => episode.elements["title"].text,
               :rating => episode.elements["rating"].text,
-              :screencap => episode.elements["screencap"].text
+              :image => episode.elements["screencap"].text
             )
           end
         end
