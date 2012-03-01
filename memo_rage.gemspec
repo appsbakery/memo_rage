@@ -5,8 +5,8 @@ require "memo_rage/version"
 Gem::Specification.new do |s|
   s.name        = "memo_rage"
   s.version     = MemoRage::VERSION
-  s.authors     = ["Alex Ganov"]
-  s.email       = ["aganov@gmail.com"]
+  s.authors     = ["Alex Ganov", "Todor Grudev"]
+  s.email       = ["aganov@gmail.com", "tagrudev@gmail.com"]
   s.homepage    = ""
   s.summary     = %q{TODO: Write a gem summary}
   s.description = %q{TODO: Write a gem description}
