@@ -15,6 +15,7 @@ module MemoRage
     attr_reader :airtime
     attr_reader :airday
     attr_reader :timezone
+    attr_reader :seasons
     
     attr_reader :genres # Array
     attr_reader :akas # Array
