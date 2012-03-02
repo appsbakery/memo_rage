@@ -10,11 +10,9 @@ module MemoRage
       end
 
       def form_array(entry)
-        output = []
-        entry.elements.each do |text|
-            output << text.text
+        entry.elements.collect do |text|
+          text.text
         end
-        output
       end
     end
   end
