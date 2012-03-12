@@ -17,8 +17,8 @@ module MemoRage
       
       def parse_entry(entry)
         MemoRage::Show.new(
-          :id => entry.elements["showid"].text.to_i,
-          :name => entry.elements["name"].text
+          :id => parse_value(entry , "showid").to_i,
+          :name => parse_value(entry , "name")
         )
       end
     end

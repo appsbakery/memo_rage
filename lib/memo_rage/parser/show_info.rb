@@ -12,21 +12,21 @@ module MemoRage
 
       def parse_entry(entry)
         MemoRage::Show.new(
-          :id => entry.elements["showid"].text.to_i,
-          :name => entry.elements["showname"].text,
-          :link => entry.elements["showlink"].text,
-          :seasons => entry.elements["seasons"].text.to_i,
-          :image => entry.elements["image"].text,
-          :started => entry.elements["started"].text,
-          :ended => entry.elements["ended"].text,
-          :origin_country => entry.elements["origin_country"].text,
-          :status => entry.elements["status"].text,
-          :classification => entry.elements["classification"].text,
-          :genres => form_array(entry.elements["genres"]),
-          :runtime => entry.elements["runtime"].text.to_i,
-          :airtime => entry.elements["airtime"].text,
-          :airday => entry.elements["airday"].text,
-          :timezone => entry.elements["timezone"].text
+          :id =>                parse_value(entry, "showid").to_i,
+          :name =>              parse_value(entry, "showname"),
+          :link =>              parse_value(entry, "showlink"),
+          :seasons =>           parse_value(entry, "seasons").to_i,
+          :image =>             parse_value(entry, "image"),
+          :started =>           parse_value(entry, "started"),
+          :ended =>             parse_value(entry, "ended"),
+          :origin_country =>    parse_value(entry, "origin_country"),
+          :status =>            parse_value(entry, "status"),
+          :classification =>    parse_value(entry, "classification"),
+          :genres =>            form_array(entry.elements["genres"]),
+          :runtime =>           parse_value(entry, "runtime").to_i,
+          :airtime =>           parse_value(entry, "airtime"),
+          :airday =>            parse_value(entry, "airday"),
+          :timezone =>          parse_value(entry, "timezone")
         )
       end
 

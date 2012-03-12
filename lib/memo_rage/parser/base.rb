@@ -14,6 +14,10 @@ module MemoRage
           text.text
         end
       end
+
+      def parse_value(element, key)
+        element.elements.map { |e| e.has_name?(key) }.include?(true) ? element.elements[key].text : ""
+      end
     end
   end
 end

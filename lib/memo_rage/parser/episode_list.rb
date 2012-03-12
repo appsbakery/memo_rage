@@ -16,26 +16,22 @@ module MemoRage
         entry.elements["Episodelist"].elements.each("Season") do |season|
           season_number += 1
           season.elements.each("episode") do |episode|
-            if episode.elements["screencap"] == nil
-                missing = episode.add_element "screencap"
-                missing.add_text ""
-            end
             episodes << MemoRage::Episode.new(
-              :num => episode.elements["epnum"].text,
+              :num => parse_value(episode, "epnum"),
               :season => season_number,
-              :season_num => episode.elements["seasonnum"].text,
-              :prod_num => episode.elements["prodnum"].text,
-              :airdate => episode.elements["airdate"].text,
-              :link => episode.elements["link"].text,
-              :title => episode.elements["title"].text,
-              :rating => episode.elements["rating"].text,
-              :image => episode.elements["screencap"].text
+              :season_num => parse_value(episode, "seasonnum"),
+              :prod_num => parse_value(episode, "prodnum"),
+              :airdate => parse_value(episode,"airdate"),
+              :link => parse_value(episode,"link"),
+              :title => parse_value(episode,"title"),
+              :rating => parse_value(episode,"rating"),
+              :image => parse_value(episode,"screencap")
             )
           end
         end
         MemoRage::Show.new(
-          :name => entry.elements["name"].text,
-          :seasons => entry.elements["totalseasons"].text.to_i,
+          :name => parse_value(entry, "name"),
+          :seasons => parse_value(entry, "totalseasons").to_i,
           :episodes => episodes
         )
       end
