@@ -26,8 +26,7 @@ module MemoRage
           :runtime => entry.elements["runtime"].text.to_i,
           :airtime => entry.elements["airtime"].text,
           :airday => entry.elements["airday"].text,
-          :timezone => entry.elements["timezone"].text,
-          :akas => form_array(entry.elements["akas"])
+          :timezone => entry.elements["timezone"].text
         )
       end
 
