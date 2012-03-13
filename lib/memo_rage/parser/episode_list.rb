@@ -16,22 +16,25 @@ module MemoRage
         entry.elements["Episodelist"].elements.each("Season") do |season|
           season_number += 1
           season.elements.each("episode") do |episode|
+            episode = MemoRage::Parser::Entry.new(episode)
             episodes << MemoRage::Episode.new(
-              :num => parse_value(episode, "epnum"),
+              :num => episode.epnum,
               :season => season_number,
-              :season_num => parse_value(episode, "seasonnum"),
-              :prod_num => parse_value(episode, "prodnum"),
-              :airdate => parse_value(episode,"airdate"),
-              :link => parse_value(episode,"link"),
-              :title => parse_value(episode,"title"),
-              :rating => parse_value(episode,"rating"),
-              :image => parse_value(episode,"screencap")
+              :season_num => episode.seasonnum,
+              :prod_num => episode.prodnum,
+              :airdate => episode.airdate,
+              :link => episode.link,
+              :title => episode.title,
+              :rating => episode.rating,
+              :image => episode.screencap
             )
           end
         end
+        
+        entry = MemoRage::Parser::Entry.new(entry)
         MemoRage::Show.new(
-          :name => parse_value(entry, "name"),
-          :seasons => parse_value(entry, "totalseasons").to_i,
+          :name => entry.name,
+          :seasons => entry.totalseasons.to_i,
           :episodes => episodes
         )
       end

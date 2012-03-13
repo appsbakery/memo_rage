@@ -11,22 +11,23 @@ module MemoRage
       end
 
       def parse_entry(entry)
+        entry = MemoRage::Parser::Entry.new(entry)
         MemoRage::Show.new(
-          :id =>                parse_value(entry, "showid").to_i,
-          :name =>              parse_value(entry, "showname"),
-          :link =>              parse_value(entry, "showlink"),
-          :seasons =>           parse_value(entry, "seasons").to_i,
-          :image =>             parse_value(entry, "image"),
-          :started =>           parse_value(entry, "started"),
-          :ended =>             parse_value(entry, "ended"),
-          :origin_country =>    parse_value(entry, "origin_country"),
-          :status =>            parse_value(entry, "status"),
-          :classification =>    parse_value(entry, "classification"),
-          :genres =>            form_array(entry.elements["genres"]),
-          :runtime =>           parse_value(entry, "runtime").to_i,
-          :airtime =>           parse_value(entry, "airtime"),
-          :airday =>            parse_value(entry, "airday"),
-          :timezone =>          parse_value(entry, "timezone")
+          :id =>                entry.showid.to_i,
+          :name =>              entry.showname,
+          :link =>              entry.showlink,
+          :seasons =>           entry.seasons.to_i,
+          :image =>             entry.image,
+          :started =>           entry.started,
+          :ended =>             entry.ended,
+          :origin_country =>    entry.origin_country,
+          :status =>            entry.status,
+          :classification =>    entry.classification,
+          :genres =>            entry.to_array(:genres),
+          :runtime =>           entry.runtime.to_i,
+          :airtime =>           entry.airtime,
+          :airday =>            entry.airday,
+          :timezone =>          entry.timezone
         )
       end
 
