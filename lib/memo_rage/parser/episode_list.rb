@@ -12,14 +12,12 @@ module MemoRage
       
       def parse_entry(entry)
         episodes = []
-        season_number = 0
         entry.elements["Episodelist"].elements.each("Season") do |season|
-          season_number += 1
           season.elements.each("episode") do |episode|
             episode = MemoRage::Parser::Entry.new(episode)
             episodes << MemoRage::Episode.new(
               :num => episode.epnum,
-              :season => season_number,
+              :season => season.attributes["no"].to_i,
               :season_num => episode.seasonnum,
               :prod_num => episode.prodnum,
               :airdate => episode.airdate,

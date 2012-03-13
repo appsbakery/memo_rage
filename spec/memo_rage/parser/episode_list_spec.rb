@@ -8,6 +8,7 @@ describe MemoRage::Parser::EpisodeList do
       list = client.episode_list("2930")
       list.name.should == "Buffy the Vampire Slayer"
       list.seasons.should == 7
+      list.episodes.last.season.should == 7
     end
   end
 end
