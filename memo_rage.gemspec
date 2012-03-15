@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = MemoRage::VERSION
   s.authors     = ["Alex Ganov", "Todor Grudev"]
   s.email       = ["aganov@gmail.com", "tagrudev@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{Memo rage is an api wrapper for the http://services.tvrage.com/ The gem is created to fulfil the needs of the project http://watchmemo.com}
-  s.description = %q{Find more information at https://github.com/appsbakery/memo_rage}
+  s.homepage    = "http://github.com/appsbakery/memo_rage"
+  s.summary     = %q{Ruby wrapper for the TVRage API}
+  s.description = %q{An object-oriented Ruby wrapper for the TVRage API http://services.tvrage.com/}
 
   s.rubyforge_project = "memo_rage"
 
