@@ -25,5 +25,12 @@ describe MemoRage::Parser::ShowInfo do
       show.akas =~ [ "Buffy & vampyrerna", "Buffy - Im Bann der Dämonen", "Buffy - Vampyrenes skrekk", "Buffy a vámpírok réme", "Buffy Contre les Vampires", "Buffy l'Ammazza Vampiri", "Buffy postrach wampirów", "Buffy, a Caça-Vampiros", "Buffy, a Caçadora de Vampiros", "Buffy, Cazavampiros", "Buffy, ubojica vampira", "Buffy, vampyyrintappaja", "Vampiiritapja Buffy", "Vampírubaninn Buffy" ]
     end
   end
+
+  it 'should handle empty/missing show info' do
+    mock_api :get, 'showinfo', 'show_info_empty', :params => client.params.merge(:sid => "22303") do
+      show = client.show_info("22303")
+      show.genres.should == []
+    end 
+  end
 end
 

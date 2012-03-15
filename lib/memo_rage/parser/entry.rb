@@ -10,6 +10,7 @@ module MemoRage
       end
       
       def to_array(name)
+        return [] unless @entry.elements[name.to_s] 
         @entry.elements[name.to_s].elements.collect do |text|
           text.text
         end
