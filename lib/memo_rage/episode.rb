@@ -1,5 +1,6 @@
 module MemoRage
   class Episode < Node
+    attr_reader :id
     attr_reader :num
     attr_reader :season
     attr_reader :season_num

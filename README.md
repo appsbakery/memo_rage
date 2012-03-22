@@ -1,7 +1,6 @@
 # Memo Rage #
 
-Memo rage is an api wrapper for the http://services.tvrage.com/
-The gem is created to fulfil the needs of the project http://watchmemo.com
+An object-oriented Ruby wrapper for the TVRage API http://services.tvrage.com
 
 ## Installation ##
 

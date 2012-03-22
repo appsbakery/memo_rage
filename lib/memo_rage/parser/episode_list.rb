@@ -18,6 +18,7 @@ module MemoRage
             season.elements.each("episode") do |episode|
               episode = MemoRage::Parser::Entry.new(episode)
               episodes << MemoRage::Episode.new(
+                :id => episode.link.match(/[0-9]+$/).to_a.first.to_i,
                 :num => episode.epnum,
                 :season => season.attributes["no"].to_i,
                 :season_num => episode.seasonnum,
