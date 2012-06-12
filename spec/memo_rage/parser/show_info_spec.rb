@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 require File.expand_path(File.dirname(__FILE__) + "/../../spec_helper")
 
 describe MemoRage::Parser::ShowInfo do
@@ -26,11 +25,18 @@ describe MemoRage::Parser::ShowInfo do
     end
   end
 
-  it 'should handle empty/missing show info' do
-    mock_api :get, 'showinfo', 'show_info_empty', :params => client.params.merge(:sid => "22303") do
+  it 'should handle incomplete show info' do
+    mock_api :get, 'showinfo', 'show_info_incomplete', :params => client.params.merge(:sid => "22303") do
       show = client.show_info("22303")
       show.genres.should == []
     end 
+  end
+  
+  it 'should handle empty show info' do
+    mock_api :get, 'showinfo', 'show_info_empty', :params => client.params.merge(:sid => "9999999") do
+      show = client.show_info("9999999")
+      show.should be_nil
+    end
   end
 end
 

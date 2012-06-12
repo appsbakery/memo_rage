@@ -1,43 +1,30 @@
 module MemoRage
   module Parser
     class EpisodeList < Base
-      def parse_content(content)
-        doc = REXML::Document.new(content.body)
-        list = doc.elements["Show"]
-
-        unless list == "0"
-          parse_entry(list)
-        end
-      end
-      
-      def parse_entry(entry)
-        episodes = []
-
-        if entry.elements["Episodelist"]
-          entry.elements["Episodelist"].elements.each("Season") do |season|
-            season.elements.each("episode") do |episode|
-              episode = MemoRage::Parser::Entry.new(episode)
-              episodes << MemoRage::Episode.new(
-                :id => episode.link.match(/[0-9]+$/).to_a.first.to_i,
-                :num => episode.epnum,
-                :season => season.attributes["no"].to_i,
-                :season_num => episode.seasonnum,
-                :prod_num => episode.prodnum,
-                :airdate => episode.airdate,
-                :link => episode.link,
-                :title => episode.title,
-                :rating => episode.rating,
-                :image => episode.screencap
-              )
-            end
-          end
+      def parse_content
+        @episodes = []
+        doc = Nokogiri::XML(@content.body)
+        doc.xpath('//Show//Episodelist//Season//episode').each do |record|
+          season = record.parent.at("@no").text.to_i
+          episode = Entry.new(record)
+          @episodes << MemoRage::Episode.new(
+            :id => episode.link.match(/[0-9]+$/).to_a.first.to_i,
+            :num => episode.epnum,
+            :season => season,
+            :season_num => episode.seasonnum.try(:to_i),
+            :prod_num => episode.prodnum,
+            :airdate => episode.airdate,
+            :link => episode.link,
+            :title => episode.title,
+            :rating => episode.rating,
+            :image => episode.screencap
+          )
         end
         
-        entry = MemoRage::Parser::Entry.new(entry)
         MemoRage::Show.new(
-          :name => entry.name,
-          :seasons => entry.totalseasons.to_i,
-          :episodes => episodes
+          :name => doc.at('//Show//name').text,
+          :seasons => doc.at('//Show//totalseasons').text.to_i,
+          :episodes => @episodes
         )
       end
     end

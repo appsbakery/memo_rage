@@ -1,18 +1,13 @@
 module MemoRage
   module Parser
     class ShowInfo < Base
-      def parse_content(content)
-        doc = REXML::Document.new(content.body)
-        showinfo = doc.elements["Showinfo"]
-
-        unless showinfo == "0"
-          parse_entry(showinfo)
-        end
-      end
-
-      def parse_entry(entry)
-        entry = MemoRage::Parser::Entry.new(entry)
-        MemoRage::Show.new(
+      def parse_content
+        doc = Nokogiri::XML(@content.body)
+        result = doc.at("Showinfo")
+        return nil if result.blank? || result.text.blank?
+        
+        entry = MemoRage::Parser::Entry.new(result)
+        show = MemoRage::Show.new(
           :id =>                entry.showid.to_i,
           :name =>              entry.showname,
           :link =>              entry.showlink,
@@ -30,7 +25,6 @@ module MemoRage
           :timezone =>          entry.timezone
         )
       end
-
     end
   end
 end

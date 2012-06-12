@@ -11,6 +11,7 @@ describe MemoRage::Parser::EpisodeList do
       list.episodes.last.tap do |episode|
         episode.id.should == 28220
         episode.season.should == 7
+        episode.season_num.should == 22
       end
     end
   end

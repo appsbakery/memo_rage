@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Showinfo>
+    <showid>22303</showid>
+    <showname>Alcatraz: The Whole Shocking Story</showname>
+    <showlink>http://www.tvrage.com/shows/id-22303</showlink>
+    <seasons>1</seasons>
+    <image>http://images.tvrage.com/shows/23/22303.jpg</image>
+    <started>1980</started>
+    <startdate>Nov/05/1980</startdate>
+    
+    <ended>Nov/06/1980</ended>
+    <origin_country>US</origin_country>
+    <status>Canceled/Ended</status>
+    <classification>Mini-Series</classification>
+    <runtime>240</runtime>
+    <network  country="US">NBC</network>
+    <airtime>12:00</airtime>
+    <timezone>GMT-5 +DST</timezone>
+</Showinfo>

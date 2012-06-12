@@ -1,5 +1,8 @@
+require "nokogiri"
 require "httpclient"
-require "rexml/document"
+require "active_support/core_ext/object/try"
+require "active_support/core_ext/object/blank"
+
 require "memo_rage/version"
 
 module MemoRage

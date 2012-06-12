@@ -6,7 +6,7 @@ module MemoRage
       end
       
       def parse
-        parse_content @content
+        parse_content
       end
 
       def form_array(entry)

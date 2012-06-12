@@ -10,4 +10,10 @@ describe MemoRage::Parser::ShowSearch do
       show.name.should == "Buffy the Vampire Slayer"
     end
   end
+  
+  it 'should handle empty result set' do
+    mock_api :get, 'search', 'show_search_empty', :params => client.params.merge(:show => "yolo") do
+      client.search("yolo").should be_empty
+    end
+  end
 end

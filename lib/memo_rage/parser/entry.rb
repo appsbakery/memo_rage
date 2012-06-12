@@ -6,14 +6,12 @@ module MemoRage
       end
       
       def method_missing(sym, *args)
-        @entry.elements.map { |e| e.has_name?(sym.to_s) }.include?(true) ? @entry.elements[sym.to_s].text : ""
+        @entry.at(sym.to_s).try(:text)
       end
       
       def to_array(name)
-        return [] unless @entry.elements[name.to_s] 
-        @entry.elements[name.to_s].elements.collect do |text|
-          text.text
-        end
+        return [] unless record = @entry.at(name.to_s)
+        record.elements.map(&:text)
       end
     end
   end
