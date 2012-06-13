@@ -6,6 +6,7 @@ module MemoRage
       end
       
       def parse
+        @doc = Nokogiri::XML(@content.body)
         parse_content
       end
 

@@ -2,8 +2,7 @@ module MemoRage
   module Parser
     class ShowInfo < Base
       def parse_content
-        doc = Nokogiri::XML(@content.body)
-        result = doc.at("Showinfo")
+        result = @doc.at("Showinfo")
         return nil if result.blank? || result.text.blank?
         
         entry = MemoRage::Parser::Entry.new(result)

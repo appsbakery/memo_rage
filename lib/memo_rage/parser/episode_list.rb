@@ -2,8 +2,7 @@ module MemoRage
   module Parser
     class EpisodeList < Base
       def parse_content
-        doc = Nokogiri::XML(@content.body)
-        episodes = doc.xpath('//Show//Episodelist//Season//episode').collect do |record|
+        episodes = @doc.xpath('//Show//Episodelist//Season//episode').collect do |record|
           season = record.parent.at("@no").text.to_i
           episode = Entry.new(record)
           MemoRage::Episode.new(
@@ -21,8 +20,8 @@ module MemoRage
         end
         
         MemoRage::Show.new(
-          :name => doc.at('//Show//name').text,
-          :seasons => doc.at('//Show//totalseasons').text.to_i,
+          :name => @doc.at('//Show//name').text,
+          :seasons => @doc.at('//Show//totalseasons').text.to_i,
           :episodes => episodes
         )
       end
